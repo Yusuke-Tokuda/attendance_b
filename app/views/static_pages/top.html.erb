@@ -1,17 +1,11 @@
-<% provide(:title, "Top") %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= yield(:title) %> | AttendancemB</title>
-  </head>
+<% provide(:title, "トップ") %>
 
- <body>
   <div class="row">
-    <div class="col-md-9">
-      <h1>勤怠システム</h1>
-      <p class="btn btn-parimary">ログイン</p>
-      <p>アカウント作成はこちらから</p>
-     </div>
+    <div class="col-md-10">
+      <div class="center jumbotron">
+        <h1>勤怠システム B</h1>
+        <%= link_to "Sign up", '#', class: "btn btn-lg btn-primary" %>
+        <p>アカウント作成は<%= link_to "こちら", '#' %>から</p>
+       </div>
    </div>
- </body> 
-</html>
+  </div>
