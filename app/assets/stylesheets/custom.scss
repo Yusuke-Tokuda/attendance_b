@@ -99,6 +99,21 @@ li .header-list {
 }
 
 
+// エラーメッセージ
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 15px 0 15px;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
 
 // デバッガー
 .debug_dump {
