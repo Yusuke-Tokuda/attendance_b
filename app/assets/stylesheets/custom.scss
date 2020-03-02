@@ -1,8 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+// 全般
 body {
   padding-top: 100px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
 }
 
 .center {
@@ -13,6 +23,35 @@ body {
   margin-bottom: 10px;
 }
 
+
+// タイポグラフィ
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+// ヘッダー
 #logo {
   float: left;
   margin-right: 10px;
@@ -34,4 +73,40 @@ li .header-list {
   &:hover {
     color: silver !important;
   }
+}
+
+
+// ユーザーテーブル
+.user-table {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.label-signup {
+  margin-top: 7px;
+}
+
+.btn-signup {
+  margin-top: 12px;
+}
+
+.label-user-edit {
+  margin-top: 7px;
+}
+
+.btn-user-edit {
+  margin-top: 12px;
+}
+
+
+
+// デバッガー
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
