@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user # sessions_helpser の log_in メソッドに、@userという引数を渡す。これにより、クリエイトと同時にログイン。
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user) # remember_meが'1'なら、remember、違うならforget
       flash[:success] = "アカウントを作成しました。"
       redirect_to user_url(@user)
     else
