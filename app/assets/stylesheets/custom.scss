@@ -67,7 +67,7 @@ p {
   }
 }
 
-li .header-list {
+.header-list {
   color: #fff !important;
   font-weight: bold;
   &:hover {
@@ -76,7 +76,7 @@ li .header-list {
 }
 
 
-// ユーザーテーブル
+// ユーザー新規、更新
 .user-table {
   vertical-align: middle;
   text-align: center;
@@ -88,6 +88,16 @@ li .header-list {
 
 .btn-form {
   margin-top: 12px;
+}
+
+
+// ログインフォーム
+.label-login {
+  margin-top: 5px;
+}
+
+.btn-login {
+  margin-top: 10px;
 }
 
 

@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user # sessions_helpser の log_in メソッドに、@userという引数を渡す。これにより、クリエイトと同時にログイン。
       flash[:success] = "アカウントを作成しました。"
       redirect_to user_url(@user)
     else
