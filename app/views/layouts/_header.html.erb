@@ -3,9 +3,9 @@
     <%= link_to "勤怠システムB", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Top",   root_path, class:"header-list" %></li>
+        <li><%= link_to "トップ",   root_path, class:"header-list" %></li>
         <% if logged_in? %>
-          <li><%= link_to "利用者一覧", '#', class:"header-list" %></li>
+          <li><%= link_to "利用者一覧", users_path, class:"header-list" %></li>
           <li><%= link_to "勤怠情報の修正", '#' %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -13,14 +13,14 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "詳細", current_user, class:"header-list" %></li>
-              <li><%= link_to "設定", '#', class:"header-list" %></li>
+              <li><%= link_to "設定", edit_user_path(current_user), class:"header-list" %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "ログアウト", logout_path, method: :delete, class:"header-list" %>
               </li>
             </ul>
         <% else %>
-        <li><%= link_to "Log in", login_path, class:"header-list" %></li>
+        <li><%= link_to "ログイン", login_path, class:"header-list" %></li>
         <% end %>
       </ul>
     </nav>
