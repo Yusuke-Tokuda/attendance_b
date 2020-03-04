@@ -1,7 +1,8 @@
 User.create!(name: "ムツゴロウ御大",
              email: "sample@email.com",
              password: "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             admin: true)
 
 60.times do |n|
   name  = Faker::Creature::Animal.name
