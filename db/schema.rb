@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 20200304142536) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.string "remenber_digest"
+    t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "department"
-    t.datetime "basic_time", default: "2020-03-03 23:00:00"
-    t.datetime "work_time", default: "2020-03-03 22:30:00"
+    t.datetime "basic_time", default: "2020-03-04 23:00:00"
+    t.datetime "work_time", default: "2020-03-04 22:30:00"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

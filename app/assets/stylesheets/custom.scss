@@ -67,6 +67,14 @@ p {
   }
 }
 
+.dropdown-toggle {
+  color: #fff !important;
+  font-weight: bold;
+  &:hover {
+    color: silver !important;
+  }  
+}
+
 .header-list {
   color: #fff !important;
   font-weight: bold;
@@ -132,6 +140,8 @@ p {
     color: $state-danger-text;
   }
 }
+
+
 
 // デバッガー
 .debug_dump {
