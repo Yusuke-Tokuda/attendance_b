@@ -1,4 +1,8 @@
 class AttendancesController < ApplicationController
+  before_action :set_user, only: :edit_one_month
+  before_action :logged_in_user, only: [:update, :edit_one_month]
+  before_action :set_one_month, only: :edit_one_month
+  
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。"
 
   def update
@@ -21,8 +25,9 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
   
-    # 出勤時間と退勤時間を受け取り、在社時間を計算して返します。
-  def working_times(start, finish)
-    format("%.2f", (((finish - start) / 60) / 60.0))
+  def edit_one_month
+  end
+  
+  def update_one_month
   end
 end
