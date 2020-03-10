@@ -11,13 +11,13 @@ class AttendancesController < ApplicationController
     # 出勤時間が未登録であることを判定します。
     if @attendance.started_at.nil?
       if @attendance.update_attributes(started_at: Time.current.change(sec: 0))
-        flash[:info] = "おはようございます！"
+        flash[:info] = "本日も愛社精神の高ぶりを感じております"
       else
         flash[:danger] = UPDATE_ERROR_MSG
       end
     elsif @attendance.finished_at.nil?
       if @attendance.update_attributes(finished_at: Time.current.change(sec: 0))
-        flash[:info] = "お疲れ様でした。"
+        flash[:warning] = "え、もう帰るの？"
       else
         flash[:danger] = UPDATE_ERROR_MSG
       end
@@ -29,7 +29,7 @@ class AttendancesController < ApplicationController
   end
   
   def update_one_month
-    ActiveRecord::Base.transaction do # トランザクションを開始します。
+    ActiveRecord::Base.transaction do # トランザクション(例外処理)を開始します。
       attendances_params.each do |id, item|
         attendance = Attendance.find(id)
         attendance.update_attributes!(item)
