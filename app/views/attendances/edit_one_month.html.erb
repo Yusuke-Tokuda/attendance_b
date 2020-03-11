@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <%= form_with(model: @user, url: attendances_update_one_month_user_path(date: @first_day), local: true, method: :patch) do |f| %>
   <div>
-    <h1>勤怠編集画面</h1>
+    <h1>人件費削減画面</h1>
     <table class="table table-bordered table-condensed table-hover" id="table-attendances">
       <thead>
         <tr>
@@ -16,9 +16,15 @@
       <tbody>
         <% @attendances.each do |day| %>
           <%= f. fields_for "attendances[]", day do |attendance| %>
+            <% css_class = case $days_of_the_week[day.worked_on.wday]
+                           when '土'
+                             'text-primary'
+                           when '日'
+                             'text-danger'
+                           end %>
             <tr>
               <td><%= l(day.worked_on, format: :short) %></td>
-              <td><%= $days_of_the_week[day.worked_on.wday] %></td>
+              <td class=<%= css_class %>><%= $days_of_the_week[day.worked_on.wday] %></td>
               <% if !current_user.admin? && (Date.current < day.worked_on) %>
                 <td><%= attendance.time_field :started_at, readonly: true, class: "form-control" %></td>
                 <td><%= attendance.time_field :finished_at, readonly: true, class: "form-control" %></td>
@@ -41,7 +47,7 @@
   </div>
 
   <div class="center">
-    <%= f.submit "まとめて更新", class: "btn btn-lg btn-primary" %>
+    <%= f.submit "まとめて削減", class: "btn btn-lg btn-primary" %>
     <%= link_to "キャンセル", user_path(date: @first_day), class: "btn btn-lg btn-default" %>
   </div>
 <% end %>

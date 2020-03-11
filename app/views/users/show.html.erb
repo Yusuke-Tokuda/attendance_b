@@ -52,10 +52,15 @@
 
     <tbody>
       <% @attendances.each do |day| %>
+      <% css_class = case $days_of_the_week[day.worked_on.wday]
+                     when '土'
+                       'text-primary'
+                     when '日'
+                       'text-danger'
+                     end %>
         <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
-          <td class=<%= "sat" if day.worked_on.saturday? %>
-                    <%= "sun" if day.worked_on.sunday? %>>
+          <td class=<%= css_class %>>
             <%= $days_of_the_week[day.worked_on.wday] %>
           </td>
           <td><%= l(day.started_at, format: :hour) if day.started_at.present? %></td>

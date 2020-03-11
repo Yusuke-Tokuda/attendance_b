@@ -29,6 +29,7 @@
         <% if current_user.admin? %>
           <td class="center"><%= format_basic_info(user.basic_time) %></td>
           <td class="center"><%= format_basic_info(user.work_time) %></td>
+          <td><%= link_to "修正", edit_basic_info_user_path(user), class:"btn btn-info" %></td>
         <% end %>
       </tr>
     <% end %>
