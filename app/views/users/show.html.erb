@@ -80,8 +80,8 @@
             <% end %>
           </td>
           <td><%= day.note %></td>
-          <td><%= "サービス残業" if day.started_at.present? %></td>
-          <td><%= "自己判断" if day.started_at.present? %></td>
+          <td><%= "サービス残業" if day.finished_at.present? %></td>
+          <td><%= "自己判断" if day.finished_at.present? %></td>
         </tr>
       <% end %>
     </tbody>
