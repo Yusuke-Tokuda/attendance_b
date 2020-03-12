@@ -5,7 +5,7 @@ User.create!(name: "ムツゴロウ御大",
              department: "セクシーコマンドー部",
              admin: true)
 
-69.times do |n|
+89.times do |n|
   name  = Faker::Creature::Animal.name
   email = "sample-#{n+1}@email.com"
   password = "password"

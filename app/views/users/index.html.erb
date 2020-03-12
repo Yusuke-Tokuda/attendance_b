@@ -1,5 +1,19 @@
-<% provide(:title, "ユーザー一覧") %>
-<h1>社畜一覧</h1>
+<% provide(:title, "利用者一覧") %>
+<% if params[:user].present? && params[:user][:name] %>
+  <h1>検索結果</h1>
+<% else %>
+  <h1>社畜アニマル一覧</h1>
+<% end %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-8">
+    <%= form_with model: User.new, method: :get, local: true do |f| %>
+      <%= f.label :"ユーザー名検索", class: "label-form" %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.submit "検索する", class: "btn btn-primary btn-form" %>
+    <% end %>
+  </div>
+</div>
 
 <div class="col-md-10 col-md-offset-1">
   <%= will_paginate %>
@@ -30,6 +44,8 @@
           <td class="center"><%= format_basic_info(user.basic_time) %></td>
           <td class="center"><%= format_basic_info(user.work_time) %></td>
           <td><%= link_to "修正", edit_basic_info_user_path(user), class:"btn btn-info" %></td>
+          <td><%= link_to "削除", user, method: :delete,
+                   data: { confirm: "削除してもよろしいですか？" }, class:"btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
