@@ -3,6 +3,8 @@
   <div class="row">
     <div class="col-md-10">
       <div class="center jumbotron">
+        <%= l(Time.now, format: :long) %>
+        <%= Time.now.ceil_to(15.minutes) %>
         <h1>勤怠システム B</h1>
         <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
         <p>アカウント作成は<%= link_to "こちら", signup_path %>から</p>
