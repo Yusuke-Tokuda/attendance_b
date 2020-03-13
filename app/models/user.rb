@@ -14,10 +14,6 @@ class User < ApplicationRecord
   
   validates :department, length: { in: 2..30 }, allow_blank: true
   
-  scope :get_by_name, ->(name) {
-    where("name like ?", "%#{name}%")
-  }
-  
   def User.digest(string)
     cost = 
       if ActiveModel::SecurePassword.min_cost
