@@ -3,9 +3,9 @@
   <table class="table table-bordered user-table">
     <tr>
       <td>
-        <%= link_to "⇦ 前月へ", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        <%= link_to "⇦ 前月", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
         　【<%= l(@first_day, format: :middle) %>】　時間管理表　
-        <%= link_to "次月へ ⇨", user_path(date: @first_day.next_month), class: "btn btn-info" %>
+        <%= link_to "次月 ⇨", user_path(date: @first_day.next_month), class: "btn btn-info" %>
         </td>
       <td colspan="2">指定勤務時間：<%= format_basic_info(@user.work_time) %></td>
       <td colspan="2">基本時間：<%= format_basic_info(@user.basic_time) %></td>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="btn-users-show">
-  <%= link_to "1ヶ月の勤怠編集へ", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
+  <%= link_to "1ヶ月の人件費削減へ", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
 </div>
 
 <div>
