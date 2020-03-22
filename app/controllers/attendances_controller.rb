@@ -2,7 +2,7 @@ class AttendancesController < ApplicationController
   before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month]
   before_action :set_one_month, only: :edit_one_month
-  before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
+  before_action :admin_or_current_user, only: [:update, :edit_one_month, :update_one_month]
   
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。"
 
@@ -32,12 +32,8 @@ class AttendancesController < ApplicationController
   def update_one_month
     ActiveRecord::Base.transaction do # トランザクション(例外処理)を開始します。
       attendances_params.each do |id, item|
-        if attendance.started_at.present? && attendance.finished_at.present?
-          attendance = Attendance.find(id)
-          attendance.update_attributes!(item)
-        elsif @attendance.present? && @finished_at.blank?
-          flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました"
-        end
+        attendance = Attendance.find(id)
+        attendance.update_attributes!(item)
       end
     end
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
