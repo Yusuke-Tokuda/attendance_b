@@ -1,12 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse" id="header">
   <div class="container">
-    <%= link_to "勤怠システムB", root_path, id: "logo" %>
+    <%= link_to "勤怠システムA", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "トップ", root_path, class:"header-list" %></li>
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "社畜アニマル一覧", users_path, class:"header-list" %></li>
+            <li><%= link_to "出勤アニマル一覧", index_working_users_user_path(current_user), class:"header-list" %></li>
+            <li><%= link_to "拠点情報の修正", '#', class:"header-list" %></li>
             <li><%= link_to "基本勤怠の修正", edit_basic_info_user_path(current_user), class:"header-list" %></li>
           <% end %>
           <li class="dropdown">

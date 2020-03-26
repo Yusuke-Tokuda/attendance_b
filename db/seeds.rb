@@ -1,12 +1,12 @@
-User.create!(name: "ムツゴロウ御大",
+User.create!(name: "マシリト",
              email: "sample@email.com",
              password: "password",
              password_confirmation: "password",
-             department: "セクシーコマンドー部",
+             department: "編集部",
              admin: true)
 
-89.times do |n|
-  name  = Faker::Creature::Animal.name
+39.times do |n|
+  name  = Faker::JapaneseMedia::DragonBall.character
   email = "sample-#{n+1}@email.com"
   password = "password"
   User.create!(name: name,
