@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index_working_users
-    @working_users = @user.where(started_at: present, finished_at: nil)
+    @working_users = User.where(started_at: true, finished_at: nil)
   end
 
   def show

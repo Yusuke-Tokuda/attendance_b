@@ -3,8 +3,25 @@
 
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-condensed table-hover" id="table-users">
-  
-  
-  
+    <thead>
+        <tr>
+          <th>社畜番号</th>
+          <th>氏名</th>
+        </tr>
+      </thead>
+      
+      <% @users.each do |user| %>
+      
+      <% @user = user %>
+      
+      <% if day.started_at.present? && day.finished_at.nil? %>
+        <tr>
+           
+          <td><%= @user.employee_number.present? ? @user.employee_number : "未設定" %></td>
+          <td><%= @user.name %></td>
+      
+        </tr>
+      <% end %>
+      <% end %>
   </div>
 </div>
