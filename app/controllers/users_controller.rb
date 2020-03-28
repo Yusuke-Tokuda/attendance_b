@@ -4,14 +4,21 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
   before_action  :admin_or_current_user, only: :show
-  before_action :set_one_month, only: :show
+  before_action :set_one_month, only: [:index_working_users, :show]
 
   def index
      @users = query.paginate(page: params[:page])
   end
 
   def index_working_users
-    @working_users = User.where(started_at: true, finished_at: nil)
+    @working_users = []
+      User.all.each do |user|
+        if user.attendances.any?{|day|
+        (day.worked_on == Date.today &&
+         !day.started_at.blank? &&
+         day.finished_at.blank? )}
+        end
+    end
   end
 
   def show
@@ -66,7 +73,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :department, :employee_number, :password, :password_confirmation)
     end
 
     def basic_info_params

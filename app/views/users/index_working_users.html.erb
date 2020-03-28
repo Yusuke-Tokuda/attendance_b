@@ -10,18 +10,13 @@
         </tr>
       </thead>
       
-      <% @users.each do |user| %>
-      
-      <% @user = user %>
-      
-      <% if day.started_at.present? && day.finished_at.nil? %>
+      <% @working_users.each do |user| %>
         <tr>
            
-          <td><%= @user.employee_number.present? ? @user.employee_number : "未設定" %></td>
-          <td><%= @user.name %></td>
+          <td><%= @working_users.employee_number.present? ? @index_working_users.employee_number : "未設定" %></td>
+          <td><%= @woeking_users.name %></td>
       
         </tr>
-      <% end %>
       <% end %>
   </div>
 </div>
