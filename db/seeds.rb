@@ -1,6 +1,6 @@
 User.create!(name: "ラスボス",
              email: "sample@email.com",
-             employee_number: 1,
+             employee_number: 1001,
              password: "password",
              password_confirmation: "password",
              department: "魔王軍",
@@ -8,7 +8,7 @@ User.create!(name: "ラスボス",
 
 User.create!(name: "ボス",
              email: "senior-1@email.com",
-             employee_number: 2,
+             employee_number: 1002,
              password: "password",
              password_confirmation: "password",
              department: "魔王軍",
@@ -16,7 +16,7 @@ User.create!(name: "ボス",
 
 User.create!(name: "中ボス",
              email: "senior-2@email.com",
-             employee_number: 3,
+             employee_number: 1003,
              password: "password",
              password_confirmation: "password",
              department: "魔王軍",
@@ -25,7 +25,7 @@ User.create!(name: "中ボス",
 47.times do |n|
   name  = Faker::Name.name  
   email = "sample-#{n+1}@email.com"
-  employee_number = n+4
+  employee_number = n+1004
   password = "password"
   User.create!(name: name,
                email: email,

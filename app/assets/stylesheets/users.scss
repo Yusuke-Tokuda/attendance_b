@@ -46,7 +46,12 @@
 /* ユーザー一覧ページ */
 
 #table-users {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
   td {
     vertical-align: middle;
-  }  
+    text-align: center;
+  }
 }

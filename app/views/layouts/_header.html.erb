@@ -6,8 +6,8 @@
         <li><%= link_to "トップ", root_path, class:"header-list" %></li>
         <% if logged_in? %>
           <% if current_user.admin? %>
-            <li><%= link_to "社畜アニマル一覧", users_path, class:"header-list" %></li>
-            <li><%= link_to "出勤アニマル一覧", index_working_users_user_path(current_user), class:"header-list" %></li>
+            <li><%= link_to "社員一覧", users_path, class:"header-list" %></li>
+            <li><%= link_to "出勤中一覧", index_working_users_user_path(current_user), class:"header-list" %></li>
             <li><%= link_to "拠点情報の修正", '#', class:"header-list" %></li>
             <li><%= link_to "基本勤怠の修正", edit_basic_info_user_path(current_user), class:"header-list" %></li>
           <% end %>

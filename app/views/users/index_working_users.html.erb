@@ -1,22 +1,20 @@
 <% provide(:title, "出動戦士一覧") %>
-<h1>！！交戦中！！</h1>
-
+<h1>出勤中社員一覧</h1>
 <div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-hover" id="table-users">
+  <table class="table table-bordered table-hover" id="table-users">
     <thead>
         <tr>
           <th>社畜番号</th>
           <th>氏名</th>
         </tr>
       </thead>
-      
       <% @working_users.each do |user| %>
         <tr>
-           
-          <td><%= @working_users.employee_number.present? ? @index_working_users.employee_number : "未設定" %></td>
-          <td><%= @woeking_users.name %></td>
-      
+          <td><%= user.employee_number %></td>
+          <td><%= user.name %></td>
         </tr>
       <% end %>
   </div>
 </div>
+
+

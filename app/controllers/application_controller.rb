@@ -44,7 +44,6 @@ class ApplicationController < ActionController::Base
     Date.current.beginning_of_month : params[:date].to_date
     @last_day = @first_day.end_of_month
     one_month = [*@first_day..@last_day] # 対象の月の日数を代入します。
-    # ユーザーに紐付く一ヶ月分のレコードを検索し���得します。
     @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
 
     unless one_month.count == @attendances.count # それぞれの件数（日数）が一致するか評価します。
