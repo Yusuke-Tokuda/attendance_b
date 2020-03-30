@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
 
   def index
-     @users = query.paginate(page: params[:page])
+     @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def index_working_users
@@ -79,11 +79,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:department, :basic_time, :work_time)
     end
     
-    def query
-      if params[:user].present? && params[:user][:name]
-        User.where('name LIKE ?', "%#{params[:user][:name]}%")
-      else
-        User.all
-      end
-    end
 end

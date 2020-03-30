@@ -1,28 +1,28 @@
-User.create!(name: "ラスボス",
+User.create!(name: "鳥山明",
              email: "sample@email.com",
              employee_number: 1001,
              password: "password",
              password_confirmation: "password",
-             department: "魔王軍",
+             department: "漫画家",
              admin: true)
 
-User.create!(name: "ボス",
+User.create!(name: "マシリト",
              email: "senior-1@email.com",
              employee_number: 1002,
              password: "password",
              password_confirmation: "password",
-             department: "魔王軍",
+             department: "編集部",
              senior: true)
 
-User.create!(name: "中ボス",
+User.create!(name: "野沢雅子",
              email: "senior-2@email.com",
              employee_number: 1003,
              password: "password",
              password_confirmation: "password",
-             department: "魔王軍",
+             department: "太田プロ",
              senior: true)
 
-47.times do |n|
+17.times do |n|
   name  = Faker::Name.name  
   email = "sample-#{n+1}@email.com"
   employee_number = n+1004
