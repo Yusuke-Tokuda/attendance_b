@@ -13,19 +13,20 @@
             <th>勤怠種類</th>
           </tr>
         </thead>
-        <% @bases.each do |b| %>
+        <% @bases.each do |base| %>
           <tr>
-            <td><%= link_to "修正", edit_base_path, class: "btn btn-info" %></td>
-            <td><%= link_to "削除", method: :delete, data:{ confirm: '本当に削除しますか？',
-                                                            cancel: 'やめる',
-                                                            commit: '削除'},
-                                                            title: '削除の確認',
-                                                            class: "btn btn-info" %></td>
-            <td>b.base_number</td>
-            <td>b.name</td>
-            <td>b.base_type</td>
+            <td><%= link_to "修正",  edit_basis_path(base), class: "btn btn-primary" %></td>
+            <td><%= link_to "削除", base, method: :delete, data:{ confirm: '本当に削除しますか？'},
+                                                           class: "btn btn-primary" %></td>
+            <td><%= base.base_number %></td>
+            <td><%= base.name %></td>
+            <td><%= base.base_type %></td>
           </tr>
         <% end %>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <%= link_to "拠点情報の追加", new_basis_path, class: "btn btn-primary" %>
 </div>

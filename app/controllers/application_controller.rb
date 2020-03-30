@@ -37,6 +37,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def set_base
+    @base = Base.find(params[:id])
+  end
 
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
   def set_one_month 

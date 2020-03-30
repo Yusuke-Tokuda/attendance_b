@@ -33,3 +33,12 @@ User.create!(name: "中ボス",
                password: password,
                password_confirmation: password)
 end
+
+7.times do |n|
+  name  =  Faker::Space.star 
+  base_number = "FX0#{n}"
+  base_type = Faker::Books::Lovecraft.word
+  Base.create!(name: name,
+               base_number: base_number,
+               base_type: base_type)
+end

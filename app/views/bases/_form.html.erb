@@ -1,0 +1,14 @@
+<%= form_with(model: @base, local: true) do |f| %>
+  <%= render partial: 'shared/error_messages', locals: {obj: @base} %>
+
+   <%= f.label "拠点名", class: "label-form" %>
+   <%= f.text_field :name, class:  "form-control"%>
+   
+   <%= f.label "拠点番号", class: "label-form" %>
+   <%= f.text_field :base_number, class:  "form-control"%>
+  
+   <%= f.label :"拠点種類", class: "label-form" %>
+   <%= f.text_field :base_type, class:  "form-control"%>
+   
+   <%= f.submit yield(:btn_text), class: "btn btn-primary btn-block btn-form" %>
+<% end %>
