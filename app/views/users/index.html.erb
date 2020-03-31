@@ -1,8 +1,11 @@
-<% provide(:title, "利用者一覧") %>
-<h1>社畜アニマル一覧</h1>
+<% provide(:title, "社員一覧") %>
+<h1>Z戦士一覧</h1>
 
 <div class="csv-holder">
-
+  <%= form_tag import_users_path, multipart: true do %>
+    <%= file_field_tag :file, class:"btn btn-default" %>
+    <%= submit_tag "CSVをインポート", class:"btn btn-primary" %>
+  <% end %>
 </div>
 
 <div class="col-md-10 col-md-offset-1">
@@ -11,7 +14,7 @@
     <thead>
       <tr>
         <th><%= User.human_attribute_name :name %></th>
-        <th class="center"><%= User.human_attribute_name :department %></th>
+        <th class="center"><%= User.human_attribute_name :affiliation %></th>
         <% if current_user.admin? %>
           <th class="center"><%= User.human_attribute_name :basic_time %></th>
           <th class="center"><%= User.human_attribute_name :work_time %></th>
@@ -29,7 +32,7 @@
             <%= user.name %>
           <% end %>
         </td>
-        <td class="center"><%= user.department.present? ? user.department : "未所属" %></td>
+        <td class="center"><%= user.affiliation.present? ? user.affiliation : "未所属" %></td>
         <% if current_user.admin? %>
           <td class="center"><%= format_basic_info(user.basic_time) %></td>
           <td class="center"><%= format_basic_info(user.work_time) %></td>

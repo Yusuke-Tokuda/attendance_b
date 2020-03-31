@@ -3,27 +3,27 @@ User.create!(name: "鳥山明",
              employee_number: 1001,
              password: "password",
              password_confirmation: "password",
-             department: "漫画家",
+             affiliation: "漫画家",
              admin: true)
 
-User.create!(name: "マシリト",
-             email: "senior-1@email.com",
+User.create!(name: "フリーザ様",
+             email: "superior-1@email.com",
              employee_number: 1002,
              password: "password",
              password_confirmation: "password",
-             department: "編集部",
-             senior: true)
+             affiliation: "フリーザ軍",
+             superior: true)
 
 User.create!(name: "野沢雅子",
-             email: "senior-2@email.com",
+             email: "superior-2@email.com",
              employee_number: 1003,
              password: "password",
              password_confirmation: "password",
-             department: "太田プロ",
-             senior: true)
+             affiliation: "太田プロ",
+             superior: true)
 
 17.times do |n|
-  name  = Faker::Name.name  
+  name  = Faker::JapaneseMedia::DragonBall.character 
   email = "sample-#{n+1}@email.com"
   employee_number = n+1004
   password = "password"

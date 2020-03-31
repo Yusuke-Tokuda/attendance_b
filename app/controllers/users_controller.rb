@@ -17,7 +17,17 @@ class UsersController < ApplicationController
           @working_users.push(user)
         end
       end
-      
+  end
+
+  def import
+    if params[:file].blank?
+      flash[:warning] = "ファイルが添付されていません。"
+      redirect_to users_url
+    else
+      User.import(params[:file])
+      flash[:success] = "ユーザー情報をインポートしました。"
+      redirect_to users_url
+    end
   end
 
   def show
@@ -72,11 +82,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :department, :employee_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :affiliation, :employee_number, :password, :password_confirmation)
     end
 
     def basic_info_params
-      params.require(:user).permit(:department, :basic_time, :work_time)
+      params.require(:user).permit(:affiliation, :basic_time, :work_time)
     end
     
 end

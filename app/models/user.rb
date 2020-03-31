@@ -11,8 +11,8 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_blank: true
-  
-  validates :department, length: { in: 2..30 }, allow_blank: true
+  validates :employee_number, presence: true, length: { minimum: 4 }
+  validates :affiliation, length: { in: 2..30 }, allow_blank: true
   
   def User.digest(string)
     cost = 
@@ -26,6 +26,22 @@ class User < ApplicationRecord
   
   def User.new_token
     SecureRandom.urlsafe_base64
+  end
+  
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+        # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
+      user = find_by(id: row["id"]) || new
+        # CSVからデータを取得し、設定する
+      user.attributes = row.to_hash.slice(*updatable_attributes)
+        # 保存する
+      user.save
+    end
+  end
+  
+    # 更新を許可するカラムを定義
+  def self.updatable_attributes
+     ["id", "name", "email", "employee_number", "affiliation"]
   end
   
     # 永続セッションのためハッシュ化したトークンをデータベースに記憶します。
