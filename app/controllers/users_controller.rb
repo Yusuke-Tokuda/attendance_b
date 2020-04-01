@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def import
     if params[:file].blank?
-      flash[:warning] = "ファイルが添付されていません。"
+      flash[:warning] = "CSVファイルが選択されていません。"
       redirect_to users_url
     else
       User.import(params[:file])
