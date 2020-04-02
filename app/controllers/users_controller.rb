@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       flash[:warning] = "CSVファイルが選択されていません。"
       redirect_to users_url
     else
+      puts "あああ"
       User.import(params[:file])
       flash[:success] = "ユーザー情報をインポートしました。"
       redirect_to users_url

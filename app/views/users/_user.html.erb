@@ -1,0 +1,11 @@
+<li>
+  <%= user.name %>
+  <div class="panel panel-default collaps">
+    <%= link_to "削除", user, method: :delete, data: 
+      { confirm: "削除してもよろしいですか？" }, class:"btn btn-primary" %>
+    <a href="#link1" data-toggle="collapse" class="btn btn-primary">編集</a>
+  </div>
+  <div id="link1" class="collapse">
+    なんらかのアレ
+  </div>
+</li>
