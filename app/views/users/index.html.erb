@@ -1,4 +1,5 @@
 <% provide(:title, "社員一覧") %>
+
 <h1>Z戦士一覧</h1>
 
 <div class="csv-holder">
@@ -9,12 +10,10 @@
 </div>
 
 <div class="col-md-10 col-md-offset-1">
-  <%= will_paginate %>
 
   <ul class="users">
     <%= render @users %>
   </ul>
   
-  <%= will_paginate %>
 </div>
 

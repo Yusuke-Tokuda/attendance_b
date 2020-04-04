@@ -1,11 +1,39 @@
-<li>
+<ul>
   <%= user.name %>
   <div class="panel panel-default collaps">
     <%= link_to "削除", user, method: :delete, data: 
       { confirm: "削除してもよろしいですか？" }, class:"btn btn-primary" %>
-    <a href="#link1" data-toggle="collapse" class="btn btn-primary">編集</a>
   </div>
-  <div id="link1" class="collapse">
-    なんらかのアレ
+  
+  
+  
+  <a href="#collapse<%= user.id %>" data-toggle="collapse" class="btn btn-primary">編集</a>
+  <div id="collapse<%= user.id %>" class="collapse">
+    <%= form_with(model: user, url: user_path(user), method: :patch, local: true) do |f| %>
+    <%= render partial: 'shared/error_messages', locals: {obj: user} %>
+  
+     <%= f.label :name, class: "label-form" %>
+     <%= f.text_field :name, class:  "form-control"%>
+    
+     <%= f.label :email, class: "label-form" %>
+     <%= f.email_field :email, class:  "form-control"%>
+     
+     <%= f.label :affiliation, class: "label-form" %>
+     <%= f.text_field :affiliation, class:  "form-control"%>
+    
+     <%= f.label :password, class: "label-form" %>
+     <%= f.password_field :password, class:  "form-control"%>
+     
+     <%= f.label :basic_work_time, class: "label-form" %>
+     <%= f.time_field :basic_work_time, class:  "form-control"%>
+        
+     <%= f.label :designated_work_start_time, class: "label-form" %>
+     <%= f.time_field :designated_work_start_time, class:  "form-control"%>
+
+     <%= f.label :designated_work_end_time, class: "label-form" %>
+     <%= f.time_field :designated_work_end_time, class:  "form-control"%>
+         
+     <%= f.submit "編集する", class: "btn btn-primary btn-block btn-form" %>
+    <% end %>
   </div>
-</li>
+</ul>

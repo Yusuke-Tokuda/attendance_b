@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
-  before_action :admin_or_current_user, only: :show
+  before_action :admin_or_current_user, only: [:show, :edit, :update, :edit_basic_info, :update_basic_info]
+  # before_action :correct_user, only: [:edit, :update]
   before_action :set_one_month, only: :show
 
   def index
-     @users = User.paginate(page: params[:page], per_page: 10)
+     @users = User.all
   end
 
   def index_working_users
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
       flash[:warning] = "CSVファイルが選択されていません。"
       redirect_to users_url
     else
-      puts "あああ"
       User.import(params[:file])
       flash[:success] = "ユーザー情報をインポートしました。"
       redirect_to users_url
@@ -56,9 +55,9 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to @user
+      redirect_to users_url
     else
-      render :edit      
+      render :index    
     end
   end
 
@@ -83,11 +82,12 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :affiliation, :employee_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :affiliation, :employee_number, :uid, :password, :password_confirmation,
+                                   :basic_work_time, :designated_work_start_time, :designated_work_end_time)
     end
 
     def basic_info_params
-      params.require(:user).permit(:affiliation, :basic_time, :work_time)
+      params.require(:user).permit(:basic_work_time, :designated_work_start_time, :designated_work_end_time)
     end
     
 end
