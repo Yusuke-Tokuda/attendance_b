@@ -2,10 +2,12 @@
 
 <h1>Z戦士一覧</h1>
 
-<div class="csv-holder">
+<div class="col-md">
   <%= form_tag import_users_path, multipart: true do %>
-    <%= file_field_tag :file, class:"btn btn-default" %>
-    <%= submit_tag "CSVをインポート", class:"btn btn-primary" %>
+    <div class="panel pane-default">
+      <%= file_field_tag :file, class:"btn btn-default" %>
+      <%= submit_tag "CSVをインポート", class:"form_control btn btn-primary", id:"csv-btn" %>
+    </div>
   <% end %>
 </div>
 
