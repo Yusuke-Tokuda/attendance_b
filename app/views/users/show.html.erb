@@ -7,8 +7,9 @@
         　【<%= l(@first_day, format: :middle) %>】　時間管理表　
         <%= link_to "次月 ⇨", user_path(date: @first_day.next_month), class: "btn btn-info" %>
         </td>
-      <td colspan="2">指定勤務時間：<%= format_basic_info(@user.work_time) %></td>
-      <td colspan="2">基本時間：<%= format_basic_info(@user.basic_time) %></td>
+      <td colspan="2">基本時間：<%= format_basic_info(@user.basic_work_time) %></td>
+      <td colspan="2">指定勤務開始時間：<%= format_basic_info(@user.designated_work_start_time) %></td>
+      <td colspan="2">指定勤務終了時間：<%= format_basic_info(@user.designated_work_end_time) %></td>
       <td>月初日：<%= l(@first_day, format: :short) %></td>
     </tr>
 
@@ -95,7 +96,7 @@
       </tr>
       <tr>
         <td colspan="2"><%= @attendances.count %></td>
-        <td colspan="5"><%= format_basic_info(@user.work_time).to_f * @worked_sum %></td>
+        <td colspan="5"><%= format_basic_info(@user.basic_work_time).to_f * @worked_sum %></td>
         <td><%= format("%.2f", @total_working_times.to_f) %></td>
       </tr>
     </tfoot>  
