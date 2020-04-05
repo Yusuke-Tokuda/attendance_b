@@ -3,9 +3,9 @@
   <table class="table table-bordered user-table">
     <tr>
       <td>
-        <%= link_to "⇦ 前月", user_path(date: @first_day.prev_month), class: "btn btn-info" %>
+        <%= link_to "⇦ ", user_path(date: @first_day.prev_month), class: "btn btn-primary" %>
         　【<%= l(@first_day, format: :middle) %>】　時間管理表　
-        <%= link_to "次月 ⇨", user_path(date: @first_day.next_month), class: "btn btn-info" %>
+        <%= link_to " ⇨", user_path(date: @first_day.next_month), class: "btn btn-primary" %>
         </td>
       <td colspan="2">基本時間：<%= format_basic_info(@user.basic_work_time) %></td>
       <td colspan="2">指定勤務開始時間：<%= format_basic_info(@user.designated_work_start_time) %></td>
@@ -14,38 +14,57 @@
     </tr>
 
     <tr>
-      <td>所属：<%= @user.affiliation.present? ? @user.affiliation : "未所属" %></td>
       <td>名前：<%= @user.name %></td>
+      <td>所属：<%= @user.affiliation.present? ? @user.affiliation : "未所属" %></td>
       <td>出勤日数：<%= @worked_sum %></td>
       <td>社畜番号</td>
-      <td><%= @user.id %></td>
+      <td><%= @user.employee_number %></td>
+      <td>カードID</td>
+      <td><%= @user.uid %></td>
       <td>締め日：<%= l(@last_day, format: :short) %></td>
     </tr>
   </table>
 </div>
 
+<% if current_user.superior? %>
+  <div class="notice-superior">
+    <li>【所属長承認申請のお知らせ】</li>    
+    <li>【勤怠変更申請のお知らせ】</li>    
+    <li>【残業申請のお知らせ】</li>    
+  </div>
+<% end %>
+
 <div class="btn-users-show">
-  <%= link_to "1ヶ月の人件費削減へ", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-success" %>
+  　　<%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %>
+  　　<%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %>
+  <ul><%= link_to "勤怠修正ログ(承認済み)", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %></ul>
 </div>
 
 <div>
   <table class="table table-bordered table-condensed table-striped table-hover" id="table-attendances">
     <thead>
       <tr>
-        <th rowspan="2">日付</th>
-        <th rowspan="2">曜日</th>
+        <th rowspan="3">残業申請</th>
+        <th rowspan="3">日付</th>
+        <th rowspan="3">曜日</th>
+        <th colspan="7">【実績】</th>
+        <th colspan="5">所定外勤務</th>
+      <tr>
         <th colspan="2">出社</th>
-        <th></th>
+        <th rowspan="2">登録</th>
         <th colspan="2">退社</th>
         <th rowspan="2">在社時間</th>
         <th rowspan="2">備考</th>
-        <th rowspan="2">残業指示</th>
-        <th rowspan="2">指示者</th>
+        <th colspan="2">終了予定時間</th>
+        <th rowspan="2">時間外時間</th>
+        <th rowspan="2">業務処理内容</th>
+        <th rowspan="2">指示者確認㊞</th>
       </tr>
       <tr>
         <th>時</th>
         <th>分</th>
-        <th>登録</th>
+        <th>時</th>
+        <th>分</th>
         <th>時</th>
         <th>分</th>
       </tr>
@@ -60,6 +79,7 @@
                          'text-danger'
                        end %>
         <tr>
+          <td><%= link_to "残業申請", '#', class:"btn btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class=<%= css_class %>>
             <%= $days_of_the_week[day.worked_on.wday] %>
@@ -82,17 +102,26 @@
             <% end %>
           </td>
           <td><%= day.note %></td>
-          <td><%= "サービス残業" if day.finished_at.present? %></td>
-          <td><%= "自己判断" if day.finished_at.present? %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       <% end %>
     </tbody>
     
     <tfoot>
       <tr>
+        <td rowspan="2"></td>
         <td colspan="2">累計日数</td>
         <td colspan="5">総勤務時間</td>
         <td>累計在社時間</td>
+        <td rowspan="2", colspan="5"></td>
+        <td rowspan="2">
+          <%=  l(Date.current, format: :short)%>
+          
+        </td>
       </tr>
       <tr>
         <td colspan="2"><%= @attendances.count %></td>

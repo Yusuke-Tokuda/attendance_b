@@ -24,8 +24,11 @@ class ApplicationController < ActionController::Base
   def correct_user
     redirect_to(root_url) unless current_user?(@user)
   end
+  
+  def superior_user
+    redirect_to root_url unless current_user.superior?
+  end
 
-  # システム管理権限所有かどうか判定します。
   def admin_user
     redirect_to root_url unless current_user.admin?
   end
