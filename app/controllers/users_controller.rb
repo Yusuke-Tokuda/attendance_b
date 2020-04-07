@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, 
+                                  :edit_overtime_req, :update_basic_info,
+                                  :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
   before_action :admin_or_current_user, only: [:show, :edit, :update, :edit_basic_info, :update_basic_info]
@@ -65,6 +67,12 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to users_url
+  end
+
+  def edit_overtime_req
+  end
+
+  def update_overtime_req
   end
 
   def edit_basic_info

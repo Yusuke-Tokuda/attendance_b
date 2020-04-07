@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     member do
       get 'index_working_users'
       post 'index_working_users'
+      get 'edit_overtime_req'
+      patch 'update_overtime_req'
       get 'edit_basic_info'
       patch 'update_basic_info'
       get 'attendances/edit_one_month'

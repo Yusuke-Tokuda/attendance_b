@@ -36,8 +36,8 @@
 
 <div class="btn-users-show">
   　　<%= link_to "勤怠を編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %>
-  　　<%= link_to "CSV出力", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %>
-  <ul><%= link_to "勤怠修正ログ(承認済み)", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-primary", id:"btns" %></ul>
+  　　<%= link_to "CSV出力", '#', class: "btn btn-primary", id:"btns" %>
+  <ul><%= link_to "勤怠修正ログ (承認済み)", '#', class: "btn btn-primary", id:"btns" %></ul>
 </div>
 
 <div>
@@ -79,7 +79,10 @@
                          'text-danger'
                        end %>
         <tr>
-          <td><%= link_to "残業申請", '#', class:"btn btn-primary" %></td>
+          <td>
+            <!-- トリガー:起動指示をする部品 -->
+            <%= link_to "残業申請", edit_overtime_req_user_path(@user), remote: true, class:"btn btn-primary" %>
+          </td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td class=<%= css_class %>>
             <%= $days_of_the_week[day.worked_on.wday] %>
@@ -119,15 +122,25 @@
         <td>累計在社時間</td>
         <td rowspan="2", colspan="5"></td>
         <td rowspan="2">
-          <%=  l(Date.current, format: :short)%>
-          
+           <P><%= "所属長承認" %></p>
+            <select class="form-control">
+              <option></option>
+              <option>上長A</option>
+              <option>上長B</option>
+            </select>
+          　<%= link_to "申請", '#', class:"btn btn-primary" %>
         </td>
       </tr>
       <tr>
         <td colspan="2"><%= @attendances.count %></td>
         <td colspan="5"><%= format_basic_info(@user.basic_work_time).to_f * @worked_sum %></td>
-        <td><%= format("%.2f", @total_working_times.to_f) %></td>
+        <td>
+          <%= format("%.2f", @total_working_times.to_f) %></td>
       </tr>
     </tfoot>  
   </table>
 </div>
+
+
+<!--モーダル表示-->
+<div id="edit-overtime-req" class="modal fade" tabindex="-1" roll="dialog" aria-hidden="true"></div>
